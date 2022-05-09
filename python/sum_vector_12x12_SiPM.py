@@ -31,7 +31,7 @@ class AnalyticalMethodSolution:
         
         
         #user sets the path and .txt file
-        data_folder = Path("/home/konstantinos/Desktop/odysseas/diplomatiki/main_code/gauss_dist/10000_Co60_v2/")
+        data_folder = Path("/home/konstantinos/Desktop/odysseas/diplomatiki/main_code/gauss_dist/realistic_geometry_detector/Co60_12x12_SiPM_10000_events")
         name_txt = input("Enter the name of txt file you want to read: ")
 
         #!! you have to change phi 
@@ -40,15 +40,17 @@ class AnalyticalMethodSolution:
         file_name = data_folder / name_txt
         
         #!!! sets number of columns we will keep
-        used_columns = list(range(148))
+        used_columns = list(range(152))
         input_data = np.genfromtxt(file_name , delimiter = ' ' , filling_values = 0, usecols=(used_columns))
         
-        df_raw_data = pd.DataFrame(input_data)   
+        df_raw_data = pd.DataFrame(input_data)
+        
         self.df_bottom_layer = df_raw_data.copy()
         df_info = df_raw_data.copy()
         
         #Remove last 4 columns that are information
-        self.df_bottom_layer.drop(self.df_bottom_layer.iloc[:, 145:], inplace = True, axis = 1)
+        self.df_bottom_layer.drop(self.df_bottom_layer.iloc[:, 144:], inplace = True, axis = 1)
+        
         #We keep a DataFrame with total counts for each event in .txt 
         self.sum_bottom_counts = self.df_bottom_layer.sum(axis=1).to_frame()
         
@@ -67,7 +69,7 @@ class AnalyticalMethodSolution:
         arr.resize(1, 144)
         arr.resize(12, 12)
         df_sum = pd.DataFrame(arr)
-
+        print(df_sum)  #vgazei metatopismeno to fasma
         ##########  Calling Functions ########
         
         df_sum = self.threshold_1(df_sum)  #Set a threshold
@@ -124,23 +126,19 @@ class AnalyticalMethodSolution:
         
         #User sets Low Boundary Energy and High Boundary Energy
         #LBE = float(input("Enter low boundary Energy [keV]: "))
-        LBE = 1350
+        LBE = 1150
 
         #HBE = float(input("Enter high boundary Energy [keV]: "))
-        HBE = 1450
+        HBE = 1350
         if (HBE - LBE) < 0 :
             print("You entered something wrong!")
             
         
         for index, counts in self.sum_bottom_counts.iterrows():
-            if (counts[0] > 1000):
-                Calculated_Energy = 0.8301 + 0.08791*counts[0] + 5.828e-8*counts[0]*counts[0] # from maximum of SiPM counts distribution
-                Calculated_Energy_List.append(Calculated_Energy)
+            
+            Calculated_Energy = -1.27720E-1  +  1.25898E-1*counts[0] + 1.54061E-7*counts[0]*counts[0] # from maximum of SiPM counts distribution
+            Calculated_Energy_List.append(Calculated_Energy)
                 
-
-            else:
-                Calculated_Energy = 14.061 + 0.08333*counts[0] + 3.213e-7*counts[0]*counts[0] # from maximum of SiPM counts distribution
-                Calculated_Energy_List.append(Calculated_Energy)
             if (Calculated_Energy) < LBE or (Calculated_Energy > HBE):
                 Rows_Remove_List.append(index)
                 
@@ -175,7 +173,7 @@ class AnalyticalMethodSolution:
         #print("Sliced array has length: ",len(sliced_array)," bins")
         print("Between ",LBE, " keV and", HBE," keV, there are ",sum(sliced_array)," events")
 
-        print(max(n))
+        
         ########################
         #setting figure for plot
         
@@ -188,7 +186,7 @@ class AnalyticalMethodSolution:
         ax3.set_ylabel('Counts', rotation=90)
         ax3.set_title('Co60 Source (Energy = 1173 keV, 1332 keV) spectrum,\n events: {0}  between [{1} keV , {2} keV]'.format(sum(sliced_array),LBE,HBE))
         plt.tight_layout()
-        #plt.show()
+        plt.show()
         print('------------------')
         return self.df_bottom_layer_specific_region
 	
@@ -305,11 +303,11 @@ class AnalyticalMethodSolution:
         n =-2.1
         #creating list with positive values of x
         for b in range(0,k):
-            list1.append(j)
+            list1.append(round(j,ndigits=2))
             j+=4.2
         #creating list with negative values of x
         for b in range(0,k):
-            list2.append(n)
+            list2.append(round(n,ndigits=2))
             n += -4.2
         list2 = list(reversed(list2))
         list_final = list2 + list1
@@ -329,11 +327,11 @@ class AnalyticalMethodSolution:
         
         #creating list with positive values of x
         for b in range(0,k):
-            list1.append(j)
+            list1.append(round(j, ndigits=2))
             j+=4.2
         #creating list with negative values of x
         for b in range(0,k):
-            list2.append(n)
+            list2.append(round(n, ndigits=2))
             n += -4.2
         list1 = list(reversed(list1))
         list_final = list1 + list2
@@ -343,6 +341,17 @@ class AnalyticalMethodSolution:
 
 
 obj = AnalyticalMethodSolution()
+
+
+
+
+
+
+
+
+
+
+
 
 
 
