@@ -23,7 +23,7 @@ class AnalyticalMethodSolution:
     def __init__(self):
         data = [] 
         data_sum = []
-        self.phi = 0
+        self.phi = 180
         self.final_list_Δφ = []
         #user sets the path and .txt file
         self.data_folder = Path("/home/konstantinos/Desktop/odysseas/diplomatiki/main_code/root_txt_files/realistic_geometry_detector/Co60_12x12_SiPM_10000_events/txt_files_only/")
@@ -31,9 +31,9 @@ class AnalyticalMethodSolution:
 
         self.sorted_file_list = sorted(os.listdir(self.data_folder), key=self.extract_integer)  #sort by number due to lambda function
         try:
-            for i in range(12):
-                print(self.sorted_file_list[0])
-                self.main(self.sorted_file_list[0])
+            for i in range(18):
+                print(self.sorted_file_list[18])
+                self.main(self.sorted_file_list[18])
                 
         except KeyboardInterrupt:
             print("Keyboard Interruption")
@@ -99,10 +99,11 @@ class AnalyticalMethodSolution:
         Y_varycentre = self.Y_varycentre(dataframe)
 
         self.inclination = round((np.arctan(Y_varycentre/X_varycentre)* 180 / np.pi)  ,2)
+        print("arxiko self.inclination",self.inclination)
         if self.phi == 0:
             mean_error = 0
             Δφ = self.inclination
-        elif self.phi < 270:
+        elif self.phi < 180:
             if self.inclination >= 0:
                 Δφ = round((self.phi - abs(self.inclination)),2)
                 mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
@@ -110,27 +111,16 @@ class AnalyticalMethodSolution:
                 self.inclination += 180
                 Δφ = round((self.phi - abs(self.inclination)),2)
                 mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
+
+        elif self.phi <= 270 :
+            self.inclination += 180
+            Δφ = round((self.phi - abs(self.inclination)),2)
+            mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
         else:
-            print("yolo")
-
-
-        #angle_phi = np.arctan(Y_varycentre/X_varycentre)* 180 / np.pi
-        #self.inclination = round((np.arctan(Y_varycentre/X_varycentre)* 180 / np.pi)  ,2)
-        
-        #print("inclination is :",self.inclination)
-##        
-##        elif self.inclination < 90:
-##            Δφ = round((self.phi - abs(self.inclination)),2)
-##            mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
-##
-##        elif self.phi >= 100 and self.phi <= 270 :
-##            self.inclination += 180
-##            Δφ = round((self.phi - abs(self.inclination)) ,2)
-##            mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
-##        else:
-##            Δφ = round((self.phi - abs(self.inclination)) + 360 ,2)
-##            mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
-
+            self.inclination += 360
+            Δφ = round((self.phi - abs(self.inclination)),2)
+            mean_error = round((self.phi - abs(self.inclination))*100 / self.phi ,2)
+            
         self.final_list_Δφ.append(Δφ)
         print('------ SiPM INFO ------')
         print("X_var: ",X_varycentre ,"Y_var: " ,Y_varycentre)
@@ -161,7 +151,7 @@ class AnalyticalMethodSolution:
         
         #User sets Low Boundary Energy and High Boundary Energy
         #LBE = float(input("Enter low boundary Energy [keV]: "))
-        LBE = 0
+        LBE = 1050
 
         #HBE = float(input("Enter high boundary Energy [keV]: "))
         HBE = 1450
@@ -373,10 +363,82 @@ class AnalyticalMethodSolution:
         return list_final
 
 
+class DataAnalysis:
+    def __init__(self):
+        self.gaussian_plot_distribution()
+        self.sigma_events_relation()
+    
+    def gaussian_plot_distribution(self):
+
+        Co60_3500_events_btin_1150_1350kev = [-17.77,-5,-2.59,28.23,-47.84,4.76,25.37,13.79,17.29,26.75,-30.32, -158.14,5.15,-46.44,13.32,46.69,-30.31,31.08,24.22,-13.38,15.98,45.31,27.22,17.65,-17.77,-10.83,20.16,27.96,17.81,31.04,6.51,-10.28,-5.94,-2.13,2.68,-2.07]
+        Co60_7000_events_btin_550_1350kev = [0.35,1.71,1.9,17.85,-12.38,12.36,12.04,7.96,11.56,22.53,-3.99,17.62,4.6,-18.46,3.79,10.41,-10.24,21.83,4.86,-19.37,16.37,30,5.06,12.04,-6.49,-10,15.13,9.14,15.21,0.28,-7.43,-3.52,-10.21,4.89,-0.29]
+        Co60_10000_events_btin_0_1450kev = [1.89, 0.4, -1.42, 16.95, -16.22, 11.4, 9.28, 8.78, 6.03, 18.04, -3.42, 19.87, 3.42, -17.34, 4.94, 8.9, -10.92, 20.32, 4.79, -23.29, 15.54, 30.17, 1.93, 10.97, -5.62, -2.53, 14.55, -7.28, 9.23, 15.6, 2.82, -4.43, -2.34, -7.06, 2.34, 2.82]
+        Co60_4500_events_btin_950_1450kev = [-1.21, -1.94, -1.16, 17.34, -16.71, 9.48, 23.5, 10.91, 11.44, 11.48, -14.69, 9.62, 3.34, -20.38, 11.25, 12.95, -11.13, 20.25,8.23, -15.95, 14.13, 31.95, 4.04, 14.24, -9.82, -5.61, 14.33, 10.91, 5.42, 13.68, 9.57, -8.9, -2.51, 0.62, 0.28, 0.62]
+        Co60_3800_events_btin_1100_1450kev = [-10.74, -2.71, -2.98, 22.55, -11.76, 6.16, 24.9, 14.86, 13.28, 14.54, -24.44, 12.68, 5.22, -29.39, 15.75, 38.66, -14.11, 27.21, 16.32, -15.63, 12.43, 41.53, 17.94, 15.83, -19.15, -5.55, 16.07, 21.82, 5.14, 8.67, 7.15, -6.47, 3.56, 1.17, 4.46, -4.63]
+        Co60_4000_events_btin_1050_1450kev = [-9.41, -1.59, -2.83, 19.25, -18.87, 9.12, 23.58, 14.49, 8.75, 8.43, -16.69, 11.89, 4.69, -26.35, 15.35, 25.69, -11.56, 25.98,12.66, -16.68, 12.91, 38.24, 12.63, 13.48, -15.38, -6.01, 14.98, 13.88, 3.47, 11.09, 10.44, -9.18, 5.2, 2.44, 2.42, 2.48]
+        #define constants
+        mean = np.mean(Co60_4000_events_btin_1050_1450kev)
+        variance = np.var(Co60_4000_events_btin_1050_1450kev)
+        sigma = np.sqrt(variance)
+        mean_of_events = np.mean(3800)
+        
+        LSL = min(Co60_4000_events_btin_1050_1450kev)
+        USL = max(Co60_4000_events_btin_1050_1450kev)
+        num_bins = 80
+        # calculate the z-transform
+        #z1 = ( LSL - mean ) / sigma
+        #z2 = ( USL - mean ) / sigma
+
+        #Process capability
+        Cp = (USL - LSL)/ (6*variance)
+        #Print info table
+        #info_table = [['delta_phi_upper'],['Entries' , len(real_data)], ['Mean', mean] ,['Variance', variance] ,['Sigma', sigma]]
+        #print(tabulate(info_table,headers = 'firstrow', tablefmt = 'fancy_grid'))
 
 
-obj = AnalyticalMethodSolution()
+        fig, ax = plt.subplots(1,1,figsize=(10,7))
+        plt.style.use('seaborn-bright')
+        #ax.plot(x_all,y_all, label='Gaussian Distribution', linewidth = 2, color = 'r')
+        #ax.legend(title ='delta_phi_upper')
+        n, bins, patches = ax.hist(Co60_4000_events_btin_1050_1450kev, bins = num_bins, range=(-200,200),density=True,  edgecolor="blue",color='white')
+        
+        
+        # add a 'best fit' line
+        y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
+             np.exp(-0.5 * (1 / sigma * (bins - mean))**2))
+        ax.plot(bins, y, '--',label='best fit', color='red')
+        ax.set_xlim([-200,200])
+        #ax.set_ylim([0,0.45])
+        ax.set_xlabel('Δφ[deg]')
+        ax.set_ylabel('Events / 1.5deg')
+        ax.set_title('Co60 Source (Energy = 1173 keV, 1332 keV) φ Accuracy from upper SiPM')
+        plt.annotate("Entries = {}".format(round(mean_of_events)), xy=(0, 1), xytext=(12, -12), va='top',xycoords='axes fraction', textcoords='offset points')
+        plt.annotate("Mean = {0:.4g}".format(mean), xy=(0, 1), xytext=(12, -24), va='top',xycoords='axes fraction', textcoords='offset points')
+        plt.annotate("Variance = {0:.4g}".format(variance), xy=(0, 1), xytext=(12, -36), va='top',xycoords='axes fraction', textcoords='offset points')
+        plt.annotate("Sigma = {0:.4g}".format(sigma), xy=(0, 1), xytext=(12, -48), va='top',xycoords='axes fraction', textcoords='offset points')
+        plt.annotate("Process Capability = {0:.4g}".format(Cp), xy=(0, 1), xytext=(12, -60), va='top',xycoords='axes fraction', textcoords='offset points')
+        plt.show()
 
+    def sigma_events_relation(self):
+        # Define x and y values
+        x_realistic_8x8_SiPM = [7000,10000,15000,20000]
+        y_realistic_8x8_SiPM = [11.75,8.328,5.861,5.949]
+
+        x_realistic_12x12_SiPM = [3500, 3800, 4000, 4500, 7000, 10000]
+        y_realistic_12x12_SiPM = [35.28, 16.13, 14.09, 11.87, 11.7, 11.3]
+        # Plot a simple line chart without any feature
+        plt.plot(x_realistic_12x12_SiPM, y_realistic_12x12_SiPM)
+        plt.title('Relation Sigma - events')
+        plt.xlabel('Number of events')
+        plt.ylabel('Sigma')
+        plt.show()
+        
+
+
+    
+
+#obj = AnalyticalMethodSolution()
+analysis = DataAnalysis()
 
 
 
