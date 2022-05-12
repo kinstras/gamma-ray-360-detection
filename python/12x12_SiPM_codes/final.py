@@ -151,7 +151,7 @@ class AnalyticalMethodSolution:
         
         #User sets Low Boundary Energy and High Boundary Energy
         #LBE = float(input("Enter low boundary Energy [keV]: "))
-        LBE = 1050
+        LBE = 200
 
         #HBE = float(input("Enter high boundary Energy [keV]: "))
         HBE = 1450
@@ -376,14 +376,18 @@ class DataAnalysis:
         Co60_4500_events_btin_950_1450kev = [-1.21, -1.94, -1.16, 17.34, -16.71, 9.48, 23.5, 10.91, 11.44, 11.48, -14.69, 9.62, 3.34, -20.38, 11.25, 12.95, -11.13, 20.25,8.23, -15.95, 14.13, 31.95, 4.04, 14.24, -9.82, -5.61, 14.33, 10.91, 5.42, 13.68, 9.57, -8.9, -2.51, 0.62, 0.28, 0.62]
         Co60_3800_events_btin_1100_1450kev = [-10.74, -2.71, -2.98, 22.55, -11.76, 6.16, 24.9, 14.86, 13.28, 14.54, -24.44, 12.68, 5.22, -29.39, 15.75, 38.66, -14.11, 27.21, 16.32, -15.63, 12.43, 41.53, 17.94, 15.83, -19.15, -5.55, 16.07, 21.82, 5.14, 8.67, 7.15, -6.47, 3.56, 1.17, 4.46, -4.63]
         Co60_4000_events_btin_1050_1450kev = [-9.41, -1.59, -2.83, 19.25, -18.87, 9.12, 23.58, 14.49, 8.75, 8.43, -16.69, 11.89, 4.69, -26.35, 15.35, 25.69, -11.56, 25.98,12.66, -16.68, 12.91, 38.24, 12.63, 13.48, -15.38, -6.01, 14.98, 13.88, 3.47, 11.09, 10.44, -9.18, 5.2, 2.44, 2.42, 2.48]
+        Co60_5000_events_btin_900_1450kev = [-1.69, -2.09, 2.05, 18.3, -13.02, 9.47, 20.5, 9.75, 9.62, 12.65, -11.64, 12.71, 4.48, -16.88, 6.89, 13.71, -11.67, 17.21,7.83, -16.82, 13.18, 31.22, 2.59, 12.91, -9.19, -7.61, 14.66, 9.65, 5.23, 9.7, 5.89, -9.66, -3.3, -2.93, 1.26, 1.3]
+        Co60_6000_events_btin_750_1450kev = [0.59, 1.02, 3.48, 16.71, -10.19, 10.01, 16.07, 10.55, 5.48, 15.24, -3.5, 11.07, 5.61, -14.22, 1.66, 9.28, -10.55, 20.89, 4.46, -17.64, 13.17, 29.12, 4.04, 11.37, -7.2, -7.49, 12.47, 7.5, 6.9, 9.65, 6.09, -4.3, -1.25, -4.09, 3.66, 3.27]
+        Co60_8000_events_btin_400_1450kev = [2.05, 0.89, 0.56, 16.96, -11.72, 10.4, 11.94, 9.58, 8.22, 16.4, -3.53, 17.49, 3.89, -14.33, 3.69, 7.42, -10.14, 19.55, 5.48, -21.14, 15.92, 31.67, 3.0, 12.3, -6.0, -4.5, 14.49, 7.94, 9.41, 14.07, 4.6, -4.76, -3.77, -7.18, 3.42, 2.28]
+        Co60_9000_events_btin_200_1450kev = [1.52, 1.15, -1.31, 16.81, -15.69, 11.48, 9.64, 8.47, 6.01, 17.58, -3.33, 19.37, 3.76, -17.39, 5.1, 8.05, -10.77, 20.08, 4.46, -22.79, 15.56, 29.97, 2.09, 11.34, -6.06, -2.82, 15.23, 7.19, 10.03, 15.25, 2.57, -3.68, -2.29, -6.77, 2.26, 2.5]
         #define constants
-        mean = np.mean(Co60_4000_events_btin_1050_1450kev)
-        variance = np.var(Co60_4000_events_btin_1050_1450kev)
+        mean = np.mean(Co60_9000_events_btin_200_1450kev)
+        variance = np.var(Co60_9000_events_btin_200_1450kev)
         sigma = np.sqrt(variance)
-        mean_of_events = np.mean(3800)
+        mean_of_events = np.mean(6000)
         
-        LSL = min(Co60_4000_events_btin_1050_1450kev)
-        USL = max(Co60_4000_events_btin_1050_1450kev)
+        LSL = min(Co60_9000_events_btin_200_1450kev)
+        USL = max(Co60_9000_events_btin_200_1450kev)
         num_bins = 80
         # calculate the z-transform
         #z1 = ( LSL - mean ) / sigma
@@ -400,7 +404,7 @@ class DataAnalysis:
         plt.style.use('seaborn-bright')
         #ax.plot(x_all,y_all, label='Gaussian Distribution', linewidth = 2, color = 'r')
         #ax.legend(title ='delta_phi_upper')
-        n, bins, patches = ax.hist(Co60_4000_events_btin_1050_1450kev, bins = num_bins, range=(-200,200),density=True,  edgecolor="blue",color='white')
+        n, bins, patches = ax.hist(Co60_9000_events_btin_200_1450kev, bins = num_bins, range=(-200,200),density=True,  edgecolor="blue",color='white')
         
         
         # add a 'best fit' line
@@ -424,8 +428,8 @@ class DataAnalysis:
         x_realistic_8x8_SiPM = [7000,10000,15000,20000]
         y_realistic_8x8_SiPM = [11.75,8.328,5.861,5.949]
 
-        x_realistic_12x12_SiPM = [3500, 3800, 4000, 4500, 7000, 10000]
-        y_realistic_12x12_SiPM = [35.28, 16.13, 14.09, 11.87, 11.7, 11.3]
+        x_realistic_12x12_SiPM = [3500, 3800, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000]
+        y_realistic_12x12_SiPM = [35.28, 16.13, 14.09, 11.87, 11.1, 9.844, 11.7, 10.63, 11.03, 11.3]
         # Plot a simple line chart without any feature
         plt.plot(x_realistic_12x12_SiPM, y_realistic_12x12_SiPM)
         plt.title('Relation Sigma - events')
