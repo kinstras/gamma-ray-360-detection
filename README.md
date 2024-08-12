@@ -13,10 +13,10 @@
 
 <ul>
     <li><code>numpy</code> - For numerical operations</li>
-    <li><code>scipy</code> - For scientific computing</li>
     <li><code>matplotlib</code> - For plotting graphs and visualizations</li>
     <li><code>pandas</code> - For data manipulation and analysis</li>
-    <li><code>scikit-learn</code> - For machine learning tools</li>
+    <li><code>seaborn</code> - For high-level interface for drawing attractive and informative statistical graphics</li>
+    <li><code>plotly</code> - For high-quality visualizations. It provides a variety of chart types and allows for dynamic, web-based interactive features</li>
 </ul>
 
 <p>
