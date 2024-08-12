@@ -1,10 +1,7 @@
 numpy
 pandas 
 matplotlib
-array
-seaborn 
-pathlib
-sys
-os
-shutil
+seaborn
 plotly
+
+
