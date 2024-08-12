@@ -1,12 +1,11 @@
 # Radioactive source emission direction estimation using a cylindrical NaI detector and MVA techniques
 
 ## Abstract
-
 In this thesis, the study of spatial directional emission of radioactive radiation
 is analyzed, using a NaI(Tl) detector for isotopes of different energy strikes. In
 particular, 8x8 and 12x12 SiPM arrays (Silicon PhotoMultiplier) are placed at the
 bottom of the cylindrical NaI crystal, on which gamma-ray photons were incident via
-ANTS2 software [2]. 
+ANTS2 software.
 
 Moving forward, by applying the analytical method of weighted vector to silicon
 photomultipliers (SiPM), the direction of the source - isotope that radiates isotropically
@@ -73,10 +72,27 @@ Another type of SiPM is the 8x8 two-dimensional array with the following geometr
 - Center-to-center distance: 6.13 mm
 - PDE: 0.5
 
+<p align="center">
+  <img src="images/12x12NaI.png" alt="Diagram of the project" width="500" />
+  <br>
+  <i>Visualization of a cylindrical NaI detector in the ANTS2 program. The silicon photomultipliers are positioned at the bottom of the cylinder in a 12x12 array, covering the diameter of the detector</i>
+</p>
 
+### Simulation Results of the Isotope <sup>57</sup>Co
 
+The distribution of scintillation photons resulting from the interaction of a single gamma photon of the 57Co isotope with the crystal, with phi = 0°.
 
+The following observations are made:
 
+- Most photons are detected on the right side of the detector. However, a certain number of scintillation photons are distributed across all SiPMs in the detector,
+  making it challenging to precisely determine the direction of the point source in these configurations. This highlights the difficulties and the algorithms that need to be developed to accurately determine the direction of the point source in these arrangements.
+- The SiPM photomultipliers located at the corners do not detect photons due to the cylindrical geometry of the scintillation detector and the square geometry of the SiPM array
+  
+<p align="center">
+  <img src="images/12x12NaI.png" alt="Diagram of the project" width="500" />
+  <br>
+  <i>Visualization of a cylindrical NaI detector in the ANTS2 program. The silicon photomultipliers are positioned at the bottom of the cylinder in a 12x12 array, covering the diameter of the detector</i>
+</p>
 
 
 
