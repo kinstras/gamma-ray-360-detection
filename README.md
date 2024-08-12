@@ -1,4 +1,51 @@
 # Radioactive source emission direction estimation using a cylindrical NaI detector and MVA techniques
+<h2>Required Python Packages</h2>
+
+<p>
+    The Python code requires the following packages. You can install them using <code>pip</code> by running the command:
+</p>
+
+<pre><code>pip install -r requirements.txt</code></pre>
+
+<p>
+    Alternatively, you can install each package individually using the following commands:
+</p>
+
+<ul>
+    <li><code>numpy</code> - For numerical operations</li>
+    <li><code>scipy</code> - For scientific computing</li>
+    <li><code>matplotlib</code> - For plotting graphs and visualizations</li>
+    <li><code>pandas</code> - For data manipulation and analysis</li>
+    <li><code>scikit-learn</code> - For machine learning tools</li>
+</ul>
+
+<p>
+    Make sure to install these packages in the same environment where you plan to run the code. If you encounter any issues, refer to the package documentation or seek help from the community.
+</p>
+
+<h2>Installation Instructions</h2>
+
+<p>
+    1. Clone the repository:
+</p>
+
+<pre><code>git clone https://github.com/your-repo-name/gamma-ray-360-detection.git</code></pre>
+
+<p>
+    2. Navigate to the project directory:
+</p>
+
+<pre><code>cd gamma-ray-360-detection</code></pre>
+
+<p>
+    3. Install the required packages:
+</p>
+
+<pre><code>pip install -r requirements.txt</code></pre>
+
+<p>
+    For detailed instructions and troubleshooting, refer to the <a href="https://github.com/your-repo-name/gamma-ray-360-detection">repository's documentation</a>.
+</p>
 
 ## Abstract
 In this thesis, the study of spatial directional emission of radioactive radiation
