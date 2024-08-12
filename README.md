@@ -73,14 +73,18 @@ Another type of SiPM is the 8x8 two-dimensional array with the following geometr
 - PDE: 0.5
 
 <p align="center">
-  <img src="images/12x12NaI.png" alt="Diagram of the project" width="500" />
+  <img src="images/12x12NaI.png" alt="12x12NaI" width="500" />
   <br>
   <i>Visualization of a cylindrical NaI detector in the ANTS2 program. The silicon photomultipliers are positioned at the bottom of the cylinder in a 12x12 array, covering the diameter of the detector</i>
 </p>
 
-### Simulation Results of the Isotope <sup>57</sup>Co
+### Simulation Results 
+ One final parameter specified for the simulation of the interaction of the detection setup with the gamma photons is the number of gamma photons to be emitted from the source. The execution time of the simulation varies depending on the processing power of the respective computer.
 
-The distribution of scintillation photons resulting from the interaction of a single gamma photon of the 57Co isotope with the crystal, with phi = 0°.
+The results of the simulations are a two-dimensional matrix with dimensions (m x n). The dimension 'm' is equal to the number of gamma photons (events) that have been input into the program, while the dimension 'n' is equal to the number of SiPMs in the array. For example, simulating the interaction of 10,000 gamma photons of the  <sup>57</sup>Co isotope with the crystal in an 8x8 SiPM array, the final file will contain a two-dimensional matrix with dimensions (10,000 x 64). Finally, each cell of the matrix contains the number of photons detected by each SiPM photomultiplier, representing its weight. This matrix can be saved in .root, .dat, or .txt file formats.
+
+
+The distribution of scintillation photons resulting from the interaction of a single gamma photon of the  <sup>57</sup>Co isotope with the crystal, with phi = 0°.
 
 The following observations are made:
 
@@ -89,14 +93,55 @@ The following observations are made:
 - The SiPM photomultipliers located at the corners do not detect photons due to the cylindrical geometry of the scintillation detector and the square geometry of the SiPM array
   
 <p align="center">
-  <img src="images/Co57_phi_0.png" alt="Diagram of the project" width="500" />
+  <img src="images/Co57_phi_0.png" alt="Co57_phi_0" width="500" />
   <br>
   <i>Distribution of scintillation photons in a 12x12 SiPM array for the 57Co isotope with the 'true' emission angle of the isotope (phi = 0°). On the right, the direction of the gamma radiation is indicated by the black arrow</i>
 </p>
 
+## Source emission direction estimation
 ### Event Isolation of photopeak
 
 To determine the source in space, only gamma photons that contribute to the characteristic photopick are utilized. As shown in Table 5.1, for each isotope, a different percentage of the initial gamma photons ultimately contribute to the photopeak.
 
+<p align="center">
+  <img src="images/gamma_photopeak.png" alt="gamma_photopeak" width="500" />
+  <br>
+  <i> Depiction of the studied isotopes with their characteristic gamma photopick energies and the final percentage of gamma photons contributing to these</i>
+</p>
+
+### Calibration Factors
+The initial energy of the gamma photon can be calculated based on the total number of detected photons (counts). This energy is obtained by multiplying the total number of photons by appropriate factors, known as calibration factors. These factors, taking into account internal losses (internal NaI crystal efficiency, electronic losses), more accurately determine the initial energy of the gamma photons interacting with the crystal.
+
+The calibration factors are determined by measuring the detector’s response to known gamma photon sources and comparing the results with expected values. Subsequently, these factors are used to correct any deviations in the detector’s response and to accurately determine the energy of the gamma photons. These factors are independent of the isotopes being simulated and are related solely to the arrangement of the SiPM photomultipliers.
 
 
+
+<p>If counts &gt; 1000: <code><sup>&gamma;</sup>E<sub>initial</sub> = 0.8301 + 0.08791 &middot; counts + 5.828 &times; 10<sup>-8</sup> &middot; counts<sup>2</sup></code> </p> 
+
+
+<p>If counts &lt; 1000: <code><sup>&gamma;</sup>E<sub>initial</sub> = 14.061 + 0.08333 &middot; counts + 3.213 &times; 10<sup>-7</sup> &middot; counts<sup>2</sup></code> </p>
+
+
+### Vector Centroid Method
+
+Utilizing the characteristics of the SiPM photomultipliers, a vector is generated that starts from the origin (x0, y0) = (0, 0) and points to the location (x<sub>w</sub>, y<sub>w</sub>). The slope of the vector is defined as the angle formed between the positive x-axis and the azimuth of the emission angle.
+
+#### 5.3.1 Determining (x<sub>w</sub>, y<sub>w</sub>)
+
+To determine the position (xw, yw) of the interaction of a gamma photon in the crystal, the individual calculations for xw and yw are required.
+
+The relationships used to determine xw and yw are defined by (5.4) and (5.5):
+
+\[ x_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i} \]
+
+(5.4)
+
+\[ y_w = \frac{\sum_{i=1}^{n} w_i y_i}{\sum_{i=1}^{n} w_i} \]
+
+(5.5)
+
+where:
+- \( n \): the number of SiPM elements in a row of the two-dimensional array, i.e., \( n = 12 \) for a 12x12 SiPM array and \( n = 8 \) for an 8x8 SiPM array,
+- \( w_i \): the statistical "weight" of the individual SiPM photomultiplier, i.e., the number of scintillation photons detected,
+- \( x_i \): the x-coordinate of the center of the corresponding SiPM element,
+- \( y_i \): the y-coordinate of the center of the corresponding SiPM element.
