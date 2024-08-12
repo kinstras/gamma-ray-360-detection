@@ -89,14 +89,14 @@ The following observations are made:
 - The SiPM photomultipliers located at the corners do not detect photons due to the cylindrical geometry of the scintillation detector and the square geometry of the SiPM array
   
 <p align="center">
-  <img src="images/12x12NaI.png" alt="Diagram of the project" width="500" />
+  <img src="images/Co57_phi_0.png" alt="Diagram of the project" width="500" />
   <br>
-  <i>Visualization of a cylindrical NaI detector in the ANTS2 program. The silicon photomultipliers are positioned at the bottom of the cylinder in a 12x12 array, covering the diameter of the detector</i>
+  <i>Distribution of scintillation photons in a 12x12 SiPM array for the 57Co isotope with the 'true' emission angle of the isotope (phi = 0°). On the right, the direction of the gamma radiation is indicated by the black arrow</i>
 </p>
 
+### Event Isolation of photopeak
 
-
-
+To determine the source in space, only gamma photons that contribute to the characteristic photopick are utilized. As shown in Table 5.1, for each isotope, a different percentage of the initial gamma photons ultimately contribute to the photopeak.
 
 
 
