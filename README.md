@@ -146,3 +146,21 @@ where:
 
 ### SiPM 8x8 Array
 
+<p align="center">
+  <img src="images/8x8_Co57.png" alt="8x8_Co57" width="500" />
+  <br>
+  <i> The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>57</sup>Co isotope is shown. For simplicity, only the bar histogram corresponding to 3,500 gamma photons is displayed, along with its corresponding Gaussian fit. Similarly, Gaussian fits were produced for the other cases.
+It is observed that as the number of gamma photons increases, the resolution of the detection system improves until it reaches a limiting value, beyond which further improvement is minimal.</i>
+</p>
+
+<p align="center">
+  <img src="images/8x8_Cs137.png" alt="8x8_Co57" width="500" />
+  <br>
+  <i> The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>137</sup>Cs isotope is shown.</i>
+</p>
+
+<p align="center">
+  <img src="images/8x8_Co60.png" alt="8x8_Co57" width="500" />
+  <br>
+  <i>The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>60</sup>Co isotope is shown.</i>
+</p>
