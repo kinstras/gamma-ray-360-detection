@@ -29,7 +29,7 @@
     1. Clone the repository:
 </p>
 
-<pre><code>git clone https://github.com/your-repo-name/gamma-ray-360-detection.git</code></pre>
+<pre><code>git clone https://github.com/kinstras/gamma-ray-360-detection.git</code></pre>
 
 <p>
     2. Navigate to the project directory:
