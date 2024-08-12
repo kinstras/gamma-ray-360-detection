@@ -156,19 +156,19 @@ It is observed that as the number of gamma photons increases, the resolution of 
 <p align="center">
   <img src="images/8x8_Cs137.png" alt="8x8_Cs137" width="500" />
   <br>
-  <i> The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>137</sup>Cs isotope is shown.</i>
+  <i> The resolution plot of the quantity ∆φ for the 8x8 SiPM array of the <sup>137</sup>Cs isotope is shown.</i>
 </p>
 
 <p align="center">
   <img src="images/8x8_Co60.png" alt="8x8_Co60" width="500" />
   <br>
-  <i>The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>60</sup>Co isotope is shown.</i>
+  <i>The resolution plot of the quantity ∆φ for the 8x8 SiPM array of the <sup>60</sup>Co isotope is shown.</i>
 </p>
 
 <p align="center">
   <img src="images/resolution_NaI.png" alt="8x8_Co57" width="500" />
   <br>
-  <i>Accuracy Chart for Determining the Azimuthal Angle versus Number of Gamma Photons for the 12x12 SiPM Array of the Isotopes <sup>57</sup>Co , <sup>137</sup>Cs , and <sup>60</sup>Co  </i>
+  <i>Accuracy plot for Determining the Azimuthal Angle versus Number of Gamma Photons for the 12x12 SiPM Array of the Isotopes <sup>57</sup>Co , <sup>137</sup>Cs , and <sup>60</sup>Co  </i>
 </p>
 
 ### Conclusions
@@ -194,3 +194,11 @@ Consider the scenario where a NaI detector with an 8x8 SiPM array is placed in t
 - <sup>57</sup>Co with characteristic gamma photopeaks (E = 122 keV, 136 keV), radiating from an angle \( phi = 20&deg;)
 - <sup>137</sup>Cs with characteristic gamma photopeak (E = 662 keV), radiating from an angle \( phi = 90&deg;)
 - <sup>60</sup>Co with characteristic gamma photopeaks (E = 1173 keV, 1332 keV), radiating from an angle \( phi = 260&deg;)
+
+<p align="center">
+  <img src="images/scalability.png" alt="scalability" width="500" />
+  <br>
+  <i> The deviations ∆φ of the azimuthal angle for each isotope detected by the NaI crystal in an 8x8 SiPM array setup  </i>
+</p>
+
+
