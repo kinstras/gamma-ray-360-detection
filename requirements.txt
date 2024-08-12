@@ -1,0 +1,10 @@
+numpy
+pandas 
+matplotlib
+array
+seaborn 
+pathlib
+sys
+os
+shutil
+plotly
