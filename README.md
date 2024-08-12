@@ -126,22 +126,23 @@ The calibration factors are determined by measuring the detector’s response to
 
 Utilizing the characteristics of the SiPM photomultipliers, a vector is generated that starts from the origin (x0, y0) = (0, 0) and points to the location (x<sub>w</sub>, y<sub>w</sub>). The slope of the vector is defined as the angle formed between the positive x-axis and the azimuth of the emission angle.
 
-#### 5.3.1 Determining (x<sub>w</sub>, y<sub>w</sub>)
+#### Determining (x<sub>w</sub>, y<sub>w</sub>)
 
-To determine the position (xw, yw) of the interaction of a gamma photon in the crystal, the individual calculations for xw and yw are required.
+To determine the position (x<sub>w</sub>, y<sub>w</sub>) of the interaction of a gamma photon in the crystal, the individual calculations for x<sub>w</sub> and y<sub>w</sub> are required.
 
-The relationships used to determine xw and yw are defined by (5.4) and (5.5):
 
-\[ x_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i} \]
-
-(5.4)
-
-\[ y_w = \frac{\sum_{i=1}^{n} w_i y_i}{\sum_{i=1}^{n} w_i} \]
-
-(5.5)
+<p align="center">
+  <img src="images/varycentre.png" alt="varycentre" width="250" />
+  <br>
+</p>
 
 where:
 - \( n \): the number of SiPM elements in a row of the two-dimensional array, i.e., \( n = 12 \) for a 12x12 SiPM array and \( n = 8 \) for an 8x8 SiPM array,
 - \( w_i \): the statistical "weight" of the individual SiPM photomultiplier, i.e., the number of scintillation photons detected,
 - \( x_i \): the x-coordinate of the center of the corresponding SiPM element,
 - \( y_i \): the y-coordinate of the center of the corresponding SiPM element.
+
+## Results
+
+### SiPM 8x8 Array
+
