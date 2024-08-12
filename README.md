@@ -154,13 +154,43 @@ It is observed that as the number of gamma photons increases, the resolution of 
 </p>
 
 <p align="center">
-  <img src="images/8x8_Cs137.png" alt="8x8_Co57" width="500" />
+  <img src="images/8x8_Cs137.png" alt="8x8_Cs137" width="500" />
   <br>
   <i> The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>137</sup>Cs isotope is shown.</i>
 </p>
 
 <p align="center">
-  <img src="images/8x8_Co60.png" alt="8x8_Co57" width="500" />
+  <img src="images/8x8_Co60.png" alt="8x8_Co60" width="500" />
   <br>
   <i>The resolution chart of the quantity ∆φ for the 8x8 SiPM array of the <sup>60</sup>Co isotope is shown.</i>
 </p>
+
+<p align="center">
+  <img src="images/resolution_NaI.png" alt="8x8_Co57" width="500" />
+  <br>
+  <i>Accuracy Chart for Determining the Azimuthal Angle versus Number of Gamma Photons for the 12x12 SiPM Array of the Isotopes <sup>57</sup>Co , <sup>137</sup>Cs , and <sup>60</sup>Co  </i>
+</p>
+
+### Conclusions
+
+Defining the resolution of the detection system as the angular deviation that the detection system calculates from the actual radiation angle of the radioactive isotope, it is clear that this value should be as small as possible.
+
+It is observed:
+
+- The negative slope of the curves indicates that the resolution significantly improves with the increase in the number of gamma photons emitted from the source and collected at the photopeak.
+- The different slopes of the curves suggest that the resolution varies for each isotope; specifically, isotopes with lower emission energy have better determination of their azimuthal angle.
+- The resolution value "drops" to a limiting value beyond which it changes very little as the number of gamma photons increases. The saturation point is different for each isotope and is directly related to the gamma photopeak energy.
+- The resolution does not show a significant dependence on the choice of the SiPM array.
+
+
+### Scalability
+
+The above methodology for determining a radioactive source in space can also be applied in the case of multiple sources radiating from different positions, provided that their gamma photopeaks do not overlap.
+
+In such cases, a continuous spectrum is expected without distinct Compton regions and Compton peaks for each isotope, as the isotope with higher energy will contribute gamma photons to lower energies.
+
+Consider the scenario where a NaI detector with an 8x8 SiPM array is placed in the center of a room and three sources are radiating simultaneously from a distance \( R = 1 m \):
+
+- <sup>57</sup>Co with characteristic gamma photopeaks (E = 122 keV, 136 keV), radiating from an angle \( phi = 20&deg;)
+- <sup>137</sup>Cs with characteristic gamma photopeak (E = 662 keV), radiating from an angle \( phi = 90&deg;)
+- <sup>60</sup>Co with characteristic gamma photopeaks (E = 1173 keV, 1332 keV), radiating from an angle \( phi = 260&deg;)
