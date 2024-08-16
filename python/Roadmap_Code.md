@@ -13,9 +13,9 @@ project_directory/
 
 │ ├── scalability.py # Contains classes for future projects
 
-│ └── config.py # Contain global variables
+│ ├── config.py # Contain global variables
 
-│ └── python/final_code_all_isotopes.py # Contains final code in one file
+│ └── final_code_all_isotopes.py # Contains final code in one file
 
 
 
