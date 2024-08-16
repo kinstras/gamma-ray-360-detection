@@ -11,6 +11,8 @@ project_directory/
 
 │ ├── co60_isotope.py # Contains 4 inner classes for 12x12 and 8x8 SiPM arrangement regarding to  <sup>60</sup>Co isotope
 
+│ ├── scalability.py # Contains classes for future projects
+
 │ └── config.py # Contain global variables
 
 │ └── python/final_code_all_isotopes.py # Contains final code in one file
