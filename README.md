@@ -47,6 +47,26 @@
     For detailed instructions and troubleshooting, refer to the <a href="https://github.com/your-repo-name/gamma-ray-360-detection">repository's documentation</a>.
 </p>
 
+
+## project_directory
+
+├── python/
+
+│ ├── final.py # Main script
+
+│ ├── co57_isotope.py # Contains 4 inner classes for 12x12 and 8x8 SiPM arrangement regarding to  <sup>57</sup>Co isotope
+
+│ ├── cs137_isotope.py # Contains 4 inner classes for 12x12 and 8x8 SiPM arrangement regarding to  <sup>137</sup>Cs isotope
+
+│ ├── co60_isotope.py # Contains 4 inner classes for 12x12 and 8x8 SiPM arrangement regarding to  <sup>60</sup>Co isotope
+
+│ ├── scalability.py # Contains classes for future projects
+
+│ ├── config.py # Contain global variables
+
+│ └── final_code_all_isotopes.py # Contains final code in one file
+
+
 ## Abstract
 In this thesis, the study of spatial directional emission of radioactive radiation
 is analyzed, using a NaI(Tl) detector for isotopes of different energy strikes. In
